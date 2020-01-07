@@ -5,7 +5,7 @@ from random import randint
 from random import shuffle
 import requests
 from time import sleep
-
+'''
 from fake_useragent import UserAgent
 import os
 import sqlite3
@@ -28,7 +28,8 @@ def renew_tor():
     
 UA = UserAgent(fallback='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2')
 hdr = {'User-Agent': UA.random}
-#hdr = {'User-Agent': 'Mozilla/5.0'}
+'''
+hdr = {'User-Agent': 'Mozilla/5.0'}
 
 def get_html(url):
     
@@ -176,7 +177,7 @@ def get_categories():
     shuffle(list(set(items)))
     
     return items
-
+'''
 def file_names(stamp):
     file_name = []
     rand_string = "RAND_"+str(randint(0,100000000))
@@ -289,12 +290,13 @@ def db_update_image_download(stamp):
 
 connectTor()
 count = 0
-
+'''
 categories = get_categories()
 for category_name in categories:
     category = categories[category_name]
     page_items = get_page_items(category)
     for page_item in page_items:
+        '''
         count += 1
         if count > randint(100, 256):
             print('Sleeping...')
@@ -304,8 +306,9 @@ for category_name in categories:
             connectTor()
             count = 0
         else:
-            pass
+            pass'''
         stamp = get_details(page_item, category_name)
+        '''
         if stamp['price']==None or stamp['price']=='':
             sleep(randint(500,700))
             continue
@@ -318,5 +321,5 @@ for category_name in categories:
             pass
         else:
             break
-        db_update_image_download(stamp)
+        db_update_image_download(stamp)'''
 print('Scrape Complete')
